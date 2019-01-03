@@ -1,5 +1,4 @@
 (function(window) {
-  console.log('The JS has loaded properly!');
   window.extractData = function() {
     var ret = $.Deferred();
 
