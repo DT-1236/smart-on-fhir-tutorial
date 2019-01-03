@@ -1,6 +1,6 @@
 (function(window) {
+  console.log('The JS has loaded properly!');
   window.extractData = function() {
-    console.log('The JS has loaded properly!');
     var ret = $.Deferred();
 
     function onError() {
