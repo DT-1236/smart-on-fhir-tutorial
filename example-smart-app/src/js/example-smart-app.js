@@ -1,5 +1,5 @@
+var globalContainer;
 (function(window) {
-  var globalContainer;
   window.extractData = function() {
     var ret = $.Deferred();
 
