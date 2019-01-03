@@ -1,4 +1,3 @@
-var globalContainer;
 (function(window) {
   window.extractData = function() {
     var ret = $.Deferred();
@@ -14,7 +13,8 @@ var globalContainer;
         var pt = patient.read();
         smart.patient.api
           .fetchAll({ type: 'Condition' })
-          .then(i => (globalContainer = i));
+          .then(i => (globalContainer = i))
+          .catch(console.error("Apparently globalContainer doesn't exist yet"));
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
