@@ -11,6 +11,13 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
+        var outputPatient = defaultPatient();
+        var conditions = smart.patient.api.fetchAll({ type: 'Condition' });
+        $.when(pt, conditions).fail(onError);
+        $.when(pt, conditions).done(
+          (patient, conditions) => (outputPatient.cake = conditions)
+        );
+
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
           query: {
@@ -47,7 +54,7 @@
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
 
-          var p = defaultPatient();
+          var p = outputPatient;
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
@@ -132,5 +139,6 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
+    $('#cake').html(p.cake);
   };
 })(window);
