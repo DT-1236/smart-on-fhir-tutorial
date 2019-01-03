@@ -13,12 +13,12 @@
         var patient = smart.patient;
         var pt = patient.read();
         var outputPatient = defaultPatient();
-        var conditions = smart.patient.api.fetchAll({ type: 'Condition' });
-        $.when(pt, conditions).fail(onError);
-        $.when(pt, conditions).done((patient, conditions) => {
-          outputPatient.cake = conditions;
-          return ret2.resolve(outputPatient);
-        });
+        // var conditions = smart.patient.api.fetchAll({ type: 'Condition' });
+        // $.when(pt, conditions).fail(onError);
+        // $.when(pt, conditions).done((patient, conditions) => {
+        //   outputPatient.cake = conditions;
+        //   return ret2.resolve(outputPatient);
+        // });
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
