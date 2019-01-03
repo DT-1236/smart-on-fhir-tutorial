@@ -1,7 +1,7 @@
 (function(window) {
+  var globalContainer;
   window.extractData = function() {
     var ret = $.Deferred();
-    // var ret2 = $.Deferred();
 
     function onError() {
       console.log('Loading error', arguments);
@@ -12,13 +12,9 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
-        // var outputPatient = defaultPatient();
-        // var conditions = smart.patient.api.fetchAll({ type: 'Condition' });
-        // $.when(pt, conditions).fail(onError);
-        // $.when(pt, conditions).done((patient, conditions) => {
-        //   outputPatient.cake = conditions;
-        //   return ret2.resolve(outputPatient);
-        // });
+        smart.patient.api
+          .fetchAll({ type: 'Condition' })
+          .then(i => (globalContainer = i));
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
@@ -141,6 +137,6 @@
     $('#diastolicbp').html(p.diastolicbp);
     $('#ldl').html(p.ldl);
     $('#hdl').html(p.hdl);
-    $('#cake').html(p.cake);
+    $('#cake').html(globalContainer);
   };
 })(window);
