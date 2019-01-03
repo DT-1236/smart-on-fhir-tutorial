@@ -13,8 +13,11 @@
         var pt = patient.read();
         smart.patient.api
           .fetchAll({ type: 'Condition' })
-          .then(i => (globalContainer = i))
-          .catch(console.error("Apparently globalContainer doesn't exist yet"));
+          .then(i => {
+            globalContainer = i;
+            window.cake = i;
+          })
+          .catch(e => (window.pie = e));
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
