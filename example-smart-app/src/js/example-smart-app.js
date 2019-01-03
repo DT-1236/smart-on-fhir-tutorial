@@ -1,7 +1,7 @@
 (function(window) {
   window.extractData = function() {
     var ret = $.Deferred();
-    var ret2 = $.Deferred();
+    // var ret2 = $.Deferred();
 
     function onError() {
       console.log('Loading error', arguments);
@@ -12,7 +12,7 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
-        var outputPatient = defaultPatient();
+        // var outputPatient = defaultPatient();
         // var conditions = smart.patient.api.fetchAll({ type: 'Condition' });
         // $.when(pt, conditions).fail(onError);
         // $.when(pt, conditions).done((patient, conditions) => {
@@ -56,7 +56,7 @@
           var hdl = byCodes('2085-9');
           var ldl = byCodes('2089-1');
 
-          var p = outputPatient;
+          var p = defaultPatient();
           p.birthdate = patient.birthDate;
           p.gender = gender;
           p.fname = fname;
