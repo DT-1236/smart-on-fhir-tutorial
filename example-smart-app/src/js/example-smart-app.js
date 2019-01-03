@@ -1,6 +1,7 @@
 (function(window) {
   window.extractData = function() {
     var ret = $.Deferred();
+    var ret2 = $.Deferred();
 
     function onError() {
       console.log('Loading error', arguments);
@@ -14,9 +15,10 @@
         var outputPatient = defaultPatient();
         var conditions = smart.patient.api.fetchAll({ type: 'Condition' });
         $.when(pt, conditions).fail(onError);
-        $.when(pt, conditions).done(
-          (patient, conditions) => (outputPatient.cake = conditions)
-        );
+        $.when(pt, conditions).done((patient, conditions) => {
+          outputPatient.cake = conditions;
+          return ret2.resolve(outputPatient);
+        });
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
