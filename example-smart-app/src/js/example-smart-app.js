@@ -11,13 +11,10 @@
       if (smart.hasOwnProperty('patient')) {
         var patient = smart.patient;
         var pt = patient.read();
-        smart.patient.api
-          .fetchAll({ type: 'Condition' })
-          .then(i => {
-            globalContainer = i;
-            window.cake = i;
-          })
-          .catch(e => (window.pie = e));
+        smart.patient.api.fetchAll({ type: 'Condition' }).then(i => {
+          globalContainer = i;
+          window.cake = i;
+        });
 
         var obv = smart.patient.api.fetchAll({
           type: 'Observation',
