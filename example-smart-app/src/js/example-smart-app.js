@@ -1,5 +1,6 @@
 (function(window) {
   window.extractData = function() {
+    console.log('The JS has loaded properly!');
     var ret = $.Deferred();
 
     function onError() {
@@ -9,7 +10,6 @@
 
     function onReady(smart) {
       if (smart.hasOwnProperty('patient')) {
-        console.log('The smart object has a patient property!');
         var patient = smart.patient;
         var pt = patient.read();
         var obv = smart.patient.api.fetchAll({
